@@ -12,7 +12,7 @@ class LSTMTransformerModel(nn.Module):
                             num_layers=3, batch_first=True, bidirectional=True, dropout=0.3)
 
         # Linear Projection to Ensure Output Matches Transformer Expected Input
-        self.lstm_projection = nn.Linear(lstm_hidden_size * 2, lstm_output_features)  # 128 → 20
+        self.lstm_projection = nn.Linear(lstm_hidden_size * 2, lstm_output_features)  # 128 - 20
 
         # Transformer
         self.transformer = nn.TransformerEncoder(
@@ -51,7 +51,7 @@ class LSTMTransformerModel(nn.Module):
         # LSTM Feature Extraction (BiLSTM gives (batch_size, 54, 128))
         x, _ = self.lstm(x)
 
-        # Project 128 → 20 Features to Match Expected Transformer Input
+        # Project 128 - 20 Features to Match Expected Transformer Input
         x = self.lstm_projection(x)  # Shape: (batch_size, 54, 20)
 
         # Permute to Match Transformer Expected Shape (batch_size, seq_len=20, embed_dim=54)
