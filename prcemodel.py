@@ -11,7 +11,7 @@ class LSTMTransformerModel(nn.Module):
         self.lstm = nn.LSTM(input_size=sequence_length, hidden_size=lstm_hidden_size,
                             num_layers=3, batch_first=True, bidirectional=True, dropout=0.3)
 
-        # Linear Projection to Ensure Output Matches Transformer Expected Input
+        # Linear Projection to Ensure LSTM Output Matches Transformer Expected Input
         self.lstm_projection = nn.Linear(lstm_hidden_size * 2, lstm_output_features)  # 128 - 20
 
         # Transformer
@@ -24,7 +24,7 @@ class LSTMTransformerModel(nn.Module):
         self.fc_position = nn.Sequential(
             nn.Linear(input_channels * lstm_output_features, 256),
             nn.GELU(),
-            nn.Linear(256, 3)  # Predicts (x, y, z)
+            nn.Linear(256, 3)
         )
 
         # Fully Connected Layer for Classification (ER/NR)
@@ -38,8 +38,8 @@ class LSTMTransformerModel(nn.Module):
         # Fully Connected Layer for Energy Regression (Uses ReLU)
         self.fc_energy = nn.Sequential(
             nn.Linear(input_channels * lstm_output_features, 256),
-            nn.ReLU(),  # Ensures energy is always non-negative
-            nn.Linear(256, 1)  # Predicts energy (eV)
+            nn.ReLU(),
+            nn.Linear(256, 1) # Predicts normalised energy
         )
 
     def forward(self, x):
@@ -69,7 +69,7 @@ class LSTMTransformerModel(nn.Module):
         # Separate outputs
         position_output = self.fc_position(x)  # Predict (x, y, z)
         classification_output = self.fc_classification(x)  # Predict ER/NR (0 or 1)
-        energy_output = self.fc_energy(x)  # Predict energy (eV)
+        energy_output = self.fc_energy(x)  # Predict energy (normalised)
 
         return position_output, classification_output, energy_output
 
