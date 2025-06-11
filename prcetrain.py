@@ -20,7 +20,7 @@ CONFIG = {
     "train_data_folder": "/vols/cms/hin21/delight/waveforms/edata_train",  # Path to the folder containing training HDF5 files
     "val_data_folder": "/vols/cms/hin21/delight/waveforms/edata_val",    # Path to the folder containing validation HDF5 files
     "trace_type": "both",          # "traces_ER", "traces_NR" or "both"
-    "use_fourier": True,                # Whether to use Fourier transforms
+    "use_fourier": True,                # Whether to use Fourier transforms (unused)
     "num_epochs": 301,                    # Number of epochs to train
     "checkpoint_folder": "/vols/cms/hin21/delight/waveforms/trial97",  # Folder to save checkpoints
     "loss_folder": "/vols/cms/hin21/delight/waveforms/trial97/loss_data",          # Folder to save loss data and plot
@@ -28,15 +28,9 @@ CONFIG = {
     "batch_size": 256,                   # Batch size for training (events per batch)
     "gradient_clip": 1,               # Maximum gradient norm for clipping
     "learning_rate": 3e-4,              # Learning rate
-    "scheduler_step_size": 25,  # Decay learning rate every X epochs
-    "scheduler_gamma": 0.5,    # Decay factor for scheduler
+    "scheduler_step_size": 25,  # Decay learning rate every X epochs (unused)
+    "scheduler_gamma": 0.5,    # Decay factor for scheduler (unused)
 }
-
-#device = torch.cuda.current_device()  # Gets the active GPU
-#torch.cuda.set_per_process_memory_fraction(0.7, device=0)  # Change "0" to another GPU if needed
-
-#torch.backends.cudnn.allow_tf32 = False  
-#torch.backends.cuda.matmul.allow_tf32 = False
 
 # Ram usage function
 def print_ram_usage(tag=""):
