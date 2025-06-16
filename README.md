@@ -15,9 +15,16 @@ The model was trained and evaluated on simulated detector data, with a focus on 
 - **Energy Regression**: Bias < 6.5% (i.e. high accuracy) and Resolution < 5.5% (i.e. high precision) at 10-100 keV with noise. Maintained ~11% average bias and resolution across all energies.
 - **Multi-Task Architecture**: PRCE model demonstrated improved noise robustness across tasks, benefiting from joint training on classification, regression, and reconstruction.
 
-### ROC Curve on Noised Data
+For classification, the performance of the PRCE model was compared to an earlier version of the model called the PRC model, which only performed position reconstruction and classification.
+
+# Position Reconstruction Histogram (Predicted vs Random Guess)
+<img src="t90e276_chist.png" alt="Histrogram showing position reconstruction performance" width="500"/>
+
+# ROC Curve on Noised Data (PRC model vs PRCE model)
 <img src="nlmulti_roc_curve_noise.png" alt="ROC Curve showing classification AUC across energies (PRC model vs PRCE model)" width="500"/>
 
+# Energy Histograms (PRCE model)
+<img src="t90nrghist.png" alt="Histogram showing energy regression performance" width="500"/>
 
 ## How to Run
 
