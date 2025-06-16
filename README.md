@@ -1,5 +1,5 @@
 ## Overview
-This repository contains the code developed for my MSci thesis at Imperial College London. It implements a hybrid LSTM–Transformer architecture to process time-series data from particle detectors and jointly perform:
+This repository contains the code developed for my MSci thesis at Imperial College London. It implements a hybrid LSTM-Transformer architecture to process time-series data from particle detectors and jointly perform:
 
 - **Event classification**
 - **Energy regression**
@@ -17,13 +17,13 @@ The model was trained and evaluated on simulated detector data, with a focus on 
 
 For classification, the performance of the PRCE model was compared to an earlier version of the model called the PRC model, which only performed position reconstruction and classification.
 
-# Position Reconstruction Histogram Plot (Predicted vs Random Guess)
+# Position Reconstruction on Noised Data (Predicted vs Random Guess)
 <img src="t90e276_chist.png" alt="Histrogram showing position reconstruction performance" width="500"/>
 
 # ROC Curve on Noised Data (PRC model vs PRCE model)
 <img src="nlmulti_roc_curve_noise.png" alt="ROC Curve showing classification AUC across energies (PRC model vs PRCE model)" width="500"/>
 
-# Energy Histogram Plot (PRCE model)
+# Energy Regression on Noised Data
 <img src="t90nrghist.png" alt="Histogram showing energy regression performance" width="500"/>
 
 ## How to Run
